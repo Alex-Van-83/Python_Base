@@ -14,4 +14,4 @@ RUN poetry install --only main
 
 COPY . .
 
-CMD uvicorn main:app --host0.0.0.0
+CMD uvicorn main:app --host 0.0.0.0
