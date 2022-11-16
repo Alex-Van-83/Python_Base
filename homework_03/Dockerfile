@@ -8,12 +8,10 @@ RUN pip install --upgrade pip
 RUN pip install poetry==1.2.2
 
 RUN poetry config virtualenvs.create false --local
-
-COPY poetry.lock  pyproject.toml ./
+COPY pyproject.toml poetry.lock ./
 
 RUN poetry install --only main
 
-
 COPY . .
 
-CMD uvicorn main:app --host=0.0.0.0
+CMD uvicorn main:app --host0.0.0.0

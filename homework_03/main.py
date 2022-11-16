@@ -6,7 +6,7 @@ app = FastAPI()
 
 @app.get("/ping")
 def read_root():
-    return {"message": "pong"}
+    return {"message": " pong "}
 
 
 @app.get("/{path:path}")
