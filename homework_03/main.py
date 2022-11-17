@@ -1,15 +1,7 @@
 from fastapi import FastAPI
-
+from redis.views import router as storage_router
 
 app = FastAPI()
+app.include_router(storage_router)
 
-
-@app.get("/ping/")
-def read_root():
-    return {"message": "pong"}
-
-
-@app.get("/{path:path}")
-def all_other(path: str):
-    return {"request to": path}
 
