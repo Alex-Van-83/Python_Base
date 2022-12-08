@@ -16,12 +16,12 @@ async def get_data(url):
         return data
 
 
-def get_users():
-    return asyncio.run(get_data(USERS_DATA_URL))
+async def get_users():
+    return await get_data(USERS_DATA_URL)
 
 
-def get_posts():
-    return asyncio.run(get_data(POSTS_DATA_URL))
+async def get_posts():
+    return await get_data(POSTS_DATA_URL)
 
 
 

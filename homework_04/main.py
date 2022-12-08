@@ -12,14 +12,31 @@
   (используйте полученные из запроса данные, передайте их в функцию для добавления в БД)
 - закрытие соединения с БД
 """
+import asyncio
+from jsonplaceholder_requests import (
+    get_users,
+    get_posts,
+)
+from models import (init_models,
+                    create_users,
+                    create_posts,
+                    session_factory,
+                    scoped_session,
+)
 
 
 async def async_main():
-    pass
+    users, posts = await asyncio.gather(get_users(), get_posts())
+    await init_models()
+    users_session, posts_session = await asyncio.gather(create_users(scoped_session(session_factory), users),
+                                                        create_posts(scoped_session(session_factory), posts),
+                                                        )
+    await users_session.close()
+    await posts_session.close()
 
 
 def main():
-    pass
+    asyncio.run(async_main())
 
 
 if __name__ == "__main__":
